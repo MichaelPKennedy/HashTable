@@ -51,6 +51,22 @@ public class HashTable {
 		table[index] = p;
 		size++;
 	}
+	public void putChaining(int key, String value) {
+		int index;
+		Node p = new Node();
+		nodeCount++;
+		p.key = key;
+		p.data = value;
+		index = foldedsquarehash(key);
+		if (table[index]!=null) {
+		Node head = p;
+		head.next = table[index];
+		collisions++;
+		}else {
+		table[index] = p;
+		size++;
+		}
+	}
 	
 	public int hash(int key) {
 		return (int)(key%table.length);
